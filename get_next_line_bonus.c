@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*line_alloc(int fd, char *line_buf)
 {
@@ -88,20 +88,20 @@ static char	*go_to_next_line(char *line_buf)
 char	*get_next_line(int fd)
 {
 	char		*line;
-	static char	*line_buf;
+	static char	*line_buf[1024];
 
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	line_buf = line_alloc(fd, line_buf);
-	if (!line_buf)
+	line_buf[fd] = line_alloc(fd, line_buf[fd]);
+	if (!line_buf[fd])
 		return (NULL);
-	line = return_line(line_buf);
+	line = return_line(line_buf[fd]);
 	if (!line)
 	{
-		free(line_buf);
-		line_buf = NULL;
+		free(line_buf[fd]);
+		line_buf[fd] = NULL;
 		return (NULL);
 	}
-	line_buf = go_to_next_line(line_buf);
+	line_buf[fd] = go_to_next_line(line_buf[fd]);
 	return (line);
 }
