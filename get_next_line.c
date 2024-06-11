@@ -2,28 +2,28 @@
 
 static char	*line_alloc(int fd, char *line_buf)
 {
-	char		*buf;
+	char		*read_buf;
 	ssize_t		bytes_num;
 
-	buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buf)
+	read_buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!read_buf)
 		return (free(line_buf), NULL);
 	bytes_num = 1;
 	while (!ft_strchr(line_buf, '\n') && bytes_num > 0)
 	{
-		bytes_num = read(fd, buf, BUFFER_SIZE);
+		bytes_num = read(fd, read_buf, BUFFER_SIZE);
 		if (bytes_num == -1)
 		{
-			free(buf);
+			free(read_buf);
 			free(line_buf);
 			return (NULL);
 		}
-		buf[bytes_num] = '\0';
-		line_buf = ft_strjoin(line_buf, buf);
+		read_buf[bytes_num] = '\0';
+		line_buf = ft_strjoin(line_buf, read_buf);
 		if (!line_buf)
 			break;
 	}
-	free(buf);
+	free(read_buf);
 	return (line_buf);
 }
 
@@ -90,7 +90,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*line_buf;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE < 1 || BUFFER_SIZE > INT_MAX)
 		return (NULL);
 	line_buf = line_alloc(fd, line_buf);
 	if (!line_buf)
