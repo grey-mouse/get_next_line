@@ -32,5 +32,19 @@ int	main(void)
 		line = NULL;
 	}
 	close(fd);
+
+	// To check stdin run program as follows: ./a.out < example.txt
+	printf("\nTest for STDIN\n");
+	count = 0;
+	while (1)
+	{
+		line = get_next_line(STDIN_FILENO);
+		if (line == NULL)
+			break;
+		count++;
+		printf("[%d]:%s\n", count, line);
+		free(line);
+		line = NULL;
+	}
 	return (0);
 }

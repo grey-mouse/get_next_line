@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: niarygin <niarygin@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 13:51:43 by niarygin          #+#    #+#             */
+/*   Updated: 2024/06/12 16:11:26 by niarygin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
 static char	*line_alloc(int fd, char *line_buf)
@@ -21,7 +33,7 @@ static char	*line_alloc(int fd, char *line_buf)
 		read_buf[bytes_num] = '\0';
 		line_buf = ft_strjoin(line_buf, read_buf);
 		if (!line_buf)
-			break;
+			break ;
 	}
 	free(read_buf);
 	return (line_buf);
@@ -57,7 +69,7 @@ static char	*return_line(char *line_buf)
 
 static char	*go_to_next_line(char *line_buf)
 {
-	char	*new_line_buf;
+	char	*new_line;
 	int		i;
 	int		j;
 
@@ -69,20 +81,19 @@ static char	*go_to_next_line(char *line_buf)
 		free(line_buf);
 		return (NULL);
 	}
-	new_line_buf = (char *)malloc((ft_strlen(line_buf) - i + 1) * sizeof(char));
-	if (!new_line_buf)
+	new_line = (char *)malloc((ft_strlen(line_buf) - i++ + 1) * sizeof(char));
+	if (!new_line)
 	{
 		free(line_buf);
 		line_buf = NULL;
 		return (NULL);
 	}
 	j = 0;
-	i++;
 	while (line_buf[i])
-		new_line_buf[j++] = line_buf[i++];
-	new_line_buf[j] = '\0';
+		new_line[j++] = line_buf[i++];
+	new_line[j] = '\0';
 	free(line_buf);
-	return (new_line_buf);
+	return (new_line);
 }
 
 char	*get_next_line(int fd)
