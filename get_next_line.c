@@ -6,7 +6,7 @@
 /*   By: niarygin <niarygin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:51:43 by niarygin          #+#    #+#             */
-/*   Updated: 2024/06/12 16:11:26 by niarygin         ###   ########.fr       */
+/*   Updated: 2024/06/18 10:36:42 by niarygin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,13 @@ static char	*go_to_next_line(char *line_buf)
 	return (new_line);
 }
 
+static inline void	*mem_free(char **ptr)
+{
+	free(*ptr);
+	*ptr = NULL;
+	return (NULL);
+}
+
 char	*get_next_line(int fd)
 {
 	char		*line;
@@ -108,11 +115,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = return_line(line_buf);
 	if (!line)
-	{
-		free(line_buf);
-		line_buf = NULL;
-		return (NULL);
-	}
+		return (mem_free(&line_buf));
 	line_buf = go_to_next_line(line_buf);
 	return (line);
 }
