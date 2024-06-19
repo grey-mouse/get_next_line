@@ -6,11 +6,11 @@
 /*   By: niarygin <niarygin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:47:06 by niarygin          #+#    #+#             */
-/*   Updated: 2024/06/12 15:50:00 by niarygin         ###   ########.fr       */
+/*   Updated: 2024/06/19 12:17:55 by niarygin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 static char	*line_alloc(int fd, char *line_buf)
 {
@@ -19,7 +19,7 @@ static char	*line_alloc(int fd, char *line_buf)
 
 	read_buf = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!read_buf)
-		return (free(line_buf), NULL);
+		return (mem_free(&line_buf));
 	bytes_num = 1;
 	while (!ft_strchr(line_buf, '\n') && bytes_num > 0)
 	{
@@ -27,8 +27,8 @@ static char	*line_alloc(int fd, char *line_buf)
 		if (bytes_num == -1)
 		{
 			free(read_buf);
-			free(line_buf);
-			return (NULL);
+			read_buf = NULL;
+			return (mem_free(&line_buf));
 		}
 		read_buf[bytes_num] = '\0';
 		line_buf = ft_strjoin(line_buf, read_buf);
@@ -36,6 +36,7 @@ static char	*line_alloc(int fd, char *line_buf)
 			break ;
 	}
 	free(read_buf);
+	read_buf = NULL;
 	return (line_buf);
 }
 
@@ -77,22 +78,17 @@ static char	*go_to_next_line(char *line_buf)
 	while (line_buf[i] && line_buf[i] != '\n')
 		i++;
 	if (!line_buf[i])
-	{
-		free(line_buf);
-		return (NULL);
-	}
-	new_line = (char *)malloc((ft_strlen(line_buf) - i++ + 1) * sizeof(char));
+		return (mem_free(&line_buf));
+	new_line = (char *)malloc((ft_strlen(line_buf) - i + 1) * sizeof(char));
 	if (!new_line)
-	{
-		free(line_buf);
-		line_buf = NULL;
-		return (NULL);
-	}
+		return (mem_free(&line_buf));
 	j = 0;
+	i++;
 	while (line_buf[i])
 		new_line[j++] = line_buf[i++];
 	new_line[j] = '\0';
 	free(line_buf);
+	line_buf = NULL;
 	return (new_line);
 }
 
@@ -108,11 +104,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = return_line(line_buf[fd]);
 	if (!line)
-	{
-		free(line_buf[fd]);
-		line_buf[fd] = NULL;
-		return (NULL);
-	}
+		return (mem_free(&line_buf[fd]));
 	line_buf[fd] = go_to_next_line(line_buf[fd]);
 	return (line);
 }

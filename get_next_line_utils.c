@@ -6,7 +6,7 @@
 /*   By: niarygin <niarygin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:47:53 by niarygin          #+#    #+#             */
-/*   Updated: 2024/06/19 11:53:24 by niarygin         ###   ########.fr       */
+/*   Updated: 2024/06/19 12:11:35 by niarygin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ size_t	ft_strlen(const char *s)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	int		i;
-	int		j;
-	char	*str;
+	unsigned int	i;
+	unsigned int	j;
+	char			*str;
 
 	if (!s2)
 		return (NULL);
