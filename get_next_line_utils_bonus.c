@@ -6,11 +6,19 @@
 /*   By: niarygin <niarygin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:47:43 by niarygin          #+#    #+#             */
-/*   Updated: 2024/06/12 15:47:46 by niarygin         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:45:13 by niarygin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+
+
+void	*mem_free(char **ptr)
+{
+	free(*ptr);
+	*ptr = NULL;
+	return (NULL);
+}
 
 char	*ft_strchr(char *s, int c)
 {

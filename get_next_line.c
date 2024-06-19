@@ -6,18 +6,11 @@
 /*   By: niarygin <niarygin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 13:51:43 by niarygin          #+#    #+#             */
-/*   Updated: 2024/06/18 14:58:30 by niarygin         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:37:44 by niarygin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-static inline void	*mem_free(char **ptr)
-{
-	free(*ptr);
-	*ptr = NULL;
-	return (NULL);
-}
 
 static char	*line_alloc(int fd, char *line_buf)
 {

@@ -6,11 +6,18 @@
 /*   By: niarygin <niarygin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:47:53 by niarygin          #+#    #+#             */
-/*   Updated: 2024/06/12 15:47:56 by niarygin         ###   ########.fr       */
+/*   Updated: 2024/06/19 11:53:24 by niarygin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void	*mem_free(char **ptr)
+{
+	free(*ptr);
+	*ptr = NULL;
+	return (NULL);
+}
 
 char	*ft_strchr(char *s, int c)
 {
@@ -56,19 +63,21 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
 	if (!str)
-	{
-		free(s1);
-		s1 = NULL;
-		return (NULL);
-	}
-	i = -1;
+		return (mem_free(&s1));
+	i = 0;
 	j = 0;
-	if (s1 || (++i))
-		while (s1[++i] != '\0')
-			str[i] = s1[i];
-	while (s2[j] != '\0')
-		str[i++] = s2[j++];
-	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
+	while (s1 && s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		str[i + j] = s2[j];
+		j++;
+	}
+	str[i + j] = '\0';
 	free(s1);
+	s1 = NULL;
 	return (str);
 }

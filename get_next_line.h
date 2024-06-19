@@ -6,7 +6,7 @@
 /*   By: niarygin <niarygin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:46:35 by niarygin          #+#    #+#             */
-/*   Updated: 2024/06/12 15:46:58 by niarygin         ###   ########.fr       */
+/*   Updated: 2024/06/18 15:38:22 by niarygin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # endif
 
 char	*get_next_line(int fd);
+void	*mem_free(char **ptr);
 char	*ft_strchr(char *s, int c);
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char *s1, char *s2);
