@@ -14,12 +14,16 @@ char	*get_next_line(int fd);
 
 int	main(void)
 {
-	int		fd, fd1, fd2;
+	int		fd;
+	//int	fd1, fd2;
 	char	*line;
-	int		count, count1, count2;
+	int		count;
+	//int		count1, count2;
 
 	count = 0;
-	fd = open("example.txt", O_RDONLY);
+	fd = open("several_nl.txt", O_RDONLY);
+	//fd = open("example.txt", O_RDONLY);
+	//fd = open("empty.txt", O_RDONLY);
 	if (fd == -1)
 	{
 		printf("Error opening file");
@@ -52,7 +56,7 @@ int	main(void)
 	}*/
 
 	//To check several file descriptors
-	printf("TEST: check several file descriptors\n");
+	/*printf("TEST: check several file descriptors\n");
 	fd1 = open("example.txt", O_RDONLY);
 	if (fd1 == -1)
 	{
@@ -88,7 +92,7 @@ int	main(void)
 		line = NULL;
 	}
 	close(fd1);
-	close(fd2);
+	close(fd2);*/
 
 	return (0);
 }
