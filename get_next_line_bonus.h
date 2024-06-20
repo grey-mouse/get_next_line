@@ -6,12 +6,12 @@
 /*   By: niarygin <niarygin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:47:33 by niarygin          #+#    #+#             */
-/*   Updated: 2024/06/19 12:17:40 by niarygin         ###   ########.fr       */
+/*   Updated: 2024/06/20 11:30:43 by niarygin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <limits.h>
 # include <stdlib.h>
