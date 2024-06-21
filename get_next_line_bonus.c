@@ -6,7 +6,7 @@
 /*   By: niarygin <niarygin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:47:06 by niarygin          #+#    #+#             */
-/*   Updated: 2024/06/19 12:17:55 by niarygin         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:20:43 by niarygin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ static char	*line_alloc(int fd, char *line_buf)
 
 static char	*return_line(char *line_buf)
 {
-	char	*line;
-	int		i;
+	char			*line;
+	unsigned int	i;
 
 	i = 0;
 	if (!line_buf[i])

@@ -6,7 +6,7 @@
 /*   By: niarygin <niarygin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:47:43 by niarygin          #+#    #+#             */
-/*   Updated: 2024/06/19 12:17:22 by niarygin         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:18:19 by niarygin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*mem_free(char **ptr)
 
 char	*ft_strchr(char *s, int c)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	if (!s)
@@ -55,9 +55,9 @@ size_t	ft_strlen(const char *s)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	int		i;
-	int		j;
-	char	*str;
+	unsigned int	i;
+	unsigned int	j;
+	char			*str;
 
 	if (!s2)
 		return (NULL);

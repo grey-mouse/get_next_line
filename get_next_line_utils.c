@@ -6,7 +6,7 @@
 /*   By: niarygin <niarygin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:47:53 by niarygin          #+#    #+#             */
-/*   Updated: 2024/06/19 12:11:35 by niarygin         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:18:40 by niarygin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*mem_free(char **ptr)
 
 char	*ft_strchr(char *s, int c)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	if (!s)
